@@ -10,7 +10,11 @@
 
 
     <script>
-        fetch("")
+        fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+        })
     </script>
 </body>
 </html>
