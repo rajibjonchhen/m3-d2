@@ -22,6 +22,7 @@
 <body>
     <button class="bg-danger" id="dataChanger" onclick="dataChanger(event)">Data Changer</button>
     <button class="bg-secondary" id="dataChanger2" onclick="dataChanger2(event)">Data Changer</button>
+    <button class="bg-warning" id="albumCounter" onclick="dataChanger2(event)">Data Changer</button>
     
     <div class="container-fluid">
         <div class="row">
@@ -491,7 +492,8 @@ fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
 
 	console.log(data.data[0]);
 })
-// 
+
+// first btn
 
 const dataChanger = function(eventData){
 
@@ -534,7 +536,7 @@ const dataChanger = function(eventData){
 
 }
 
-
+// second btn
 const dataChanger2 = function(eventData){
 
 fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
@@ -580,7 +582,35 @@ fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
 
 
 
-// 
+// third btn
+const dataChanger2 = function(eventData){
+
+fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
+ "method": "GET",
+ "headers": {
+     "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+     "x-rapidapi-key": "a2e00d2d7fmsh97d81a4d7786418p174eacjsnd97f660026b9"
+ }
+})
+.then(response => response.json()) 
+.then(data => {
+
+ console.log(data.data[0]);
+ let cardDeck = document.querySelector('div.card-deck')
+ let smallCards = document.querySelectorAll('.smallCards')
+ 
+ for(let i = 0; i < data.data.length; i++){
+    
+         
+    
+ }
+})
+.catch(err => {
+ console.error(err);
+});
+
+}
+
 
 </script>
 
