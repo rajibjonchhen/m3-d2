@@ -21,7 +21,7 @@
 
 <body>
     <button class="bg-danger" id="dataChanger" onclick="dataChanger(event)">Data Changer</button>
-    <button class="bg-danger" id="dataChanger2" onclick="dataChanger2(event)">Data Changer</button>
+    <button class="bg-secondary" id="dataChanger2" onclick="dataChanger2(event)">Data Changer</button>
     
     <div class="container-fluid">
         <div class="row">
@@ -507,22 +507,23 @@ const dataChanger = function(eventData){
 
 	console.log(data.data[0]);
     let fetchData = document.querySelector('#fetchData')
-    
-    for(let i = 0; i < data.data.length; i++){
+    let page1 = data.data.slice(0,10)
+
+    for(let i = 0; i < page1.length; i++){
         let div = document.createElement("div")
 
-       fetchData.innerHTML += ` <div class="card" style="width: 18rem" class="mt-2">
-        <img src="${data.data[i].album.cover}" class="card-img-top" alt="${data.data[i].album.title} image"  width="10%">
+       fetchData.innerHTML += ` <div class="card" style="width: 9rem" class="mt-5">
+        <img src="${page1[i].album.cover}" class="card-img-top" alt="${page1[i].album.title} image"  width="10%">
         <div class="card-body">
-        <h5 class="card-title">${data.data[i].artist.name}</h5>
-        <p class="card-text">${data.data[i].album.title} ${data.data[i].artist.name}</p>
-         <a href="#" class="btn btn-primary">listen for ${data.data[i].duration}</a>
+        <h5 class="card-title">${page1[i].artist.name}</h5>
+        <p class="card-text">${page1[i].album.title} ${page1[i].artist.name}</p>
+         <a href="#" class="btn btn-primary">listen for ${page1[i].duration}</a>
              </div>
             </div>`
-            console.log(`${data.data[i].album.cover}`);
-            console.log(`${data.data[i].album.title}`);
-            console.log(`${data.data[i].artist.name}`)
-            console.log( `${data.data[i].duration}`)
+            console.log(`${page1[i].album.cover}`);
+            console.log(`${page1[i].album.title}`);
+            console.log(`${page1[i].artist.name}`)
+            console.log( `${page1[i].duration}`)
             
        
     }
@@ -547,13 +548,13 @@ fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
 .then(data => {
 
  console.log(data.data[0]);
- let cardDeck = document.querySelector('.cardDeck')
+ let cardDeck = document.querySelector('div.card-deck')
  let smallCards = document.querySelectorAll('.smallCards')
  
  for(let i = 0; i < data.data.length; i++){
     
 
-    smallCards[i].innerHTML += ` <div class="small-card align-items-center col-sm-6 col-md-4 col-lg-2 position-relative">
+    cardDeck.innerHTML += ` <div class="small-card align-items-center col-sm-6 col-md-4 col-lg-2 position-relative">
                                 <div class="play-btn position-absolute"><i
                                         class="bi bi-play-circle-fill play-circle position-relative"></i></div>
                                 <img src="${data.data[i].album.cover}" class="small-card-img ml-n3" alt="cover">
