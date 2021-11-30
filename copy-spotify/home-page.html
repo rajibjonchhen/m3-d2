@@ -20,7 +20,9 @@
 </head>
 
 <body>
-
+    <button class="bg-danger" id="dataChanger" onclick="dataChanger(event)">Data Changer</button>
+    <button class="bg-danger" id="dataChanger2" onclick="dataChanger2(event)">Data Changer</button>
+    
     <div class="container-fluid">
         <div class="row">
             <div class="col-2 side-bar show">
@@ -106,6 +108,9 @@
                 <div class="container pt-1">
                     <p style="font-size: 28px; font-weight: 700; color:white;">Good morning</p>
 
+                    <div id="fetchData" class="d-flex flex-wrap justify-content-around">
+
+                    </div>
                     <a href="./artist-page.html">
                         <div class="row card-deck justify-content-around">
 
@@ -471,6 +476,112 @@
         
 
     </script>
+
+<script>
+// 
+fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+		"x-rapidapi-key": "a2e00d2d7fmsh97d81a4d7786418p174eacjsnd97f660026b9"
+	}
+})
+.then(response => response.json()) 
+.then(data => {
+
+	console.log(data.data[0]);
+})
+// 
+
+const dataChanger = function(eventData){
+
+   fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+		"x-rapidapi-key": "a2e00d2d7fmsh97d81a4d7786418p174eacjsnd97f660026b9"
+	}
+})
+.then(response => response.json()) 
+.then(data => {
+
+	console.log(data.data[0]);
+    let fetchData = document.querySelector('#fetchData')
+    
+    for(let i = 0; i < data.data.length; i++){
+        let div = document.createElement("div")
+
+       fetchData.innerHTML += ` <div class="card" style="width: 18rem" class="mt-2">
+        <img src="${data.data[i].album.cover}" class="card-img-top" alt="${data.data[i].album.title} image"  width="10%">
+        <div class="card-body">
+        <h5 class="card-title">${data.data[i].artist.name}</h5>
+        <p class="card-text">${data.data[i].album.title} ${data.data[i].artist.name}</p>
+         <a href="#" class="btn btn-primary">listen for ${data.data[i].duration}</a>
+             </div>
+            </div>`
+            console.log(`${data.data[i].album.cover}`);
+            console.log(`${data.data[i].album.title}`);
+            console.log(`${data.data[i].artist.name}`)
+            console.log( `${data.data[i].duration}`)
+            
+       
+    }
+})
+.catch(err => {
+	console.error(err);
+});
+
+}
+
+
+const dataChanger2 = function(eventData){
+
+fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
+ "method": "GET",
+ "headers": {
+     "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+     "x-rapidapi-key": "a2e00d2d7fmsh97d81a4d7786418p174eacjsnd97f660026b9"
+ }
+})
+.then(response => response.json()) 
+.then(data => {
+
+ console.log(data.data[0]);
+ let cardDeck = document.querySelector('.cardDeck')
+ let smallCards = document.querySelectorAll('.smallCards')
+ 
+ for(let i = 0; i < data.data.length; i++){
+    
+
+    smallCards[i].innerHTML += ` <div class="small-card align-items-center col-sm-6 col-md-4 col-lg-2 position-relative">
+                                <div class="play-btn position-absolute"><i
+                                        class="bi bi-play-circle-fill play-circle position-relative"></i></div>
+                                <img src="${data.data[i].album.cover}" class="small-card-img ml-n3" alt="cover">
+                                <strong class="text-white mx-2">${data.data[i].album.cover}</strong>
+                                <strong class="text-white mx-2">${data.data[i].album.title}</strong>
+                                <strong class="text-white mx-2">${data.data[i].duration}</strong>
+                            </div>`
+         console.log(`${data.data[i].album.cover}`);
+         console.log(`${data.data[i].album.title}`);
+         console.log(`${data.data[i].artist.name}`)
+         console.log( `${data.data[i].duration}`)
+         
+    
+ }
+})
+.catch(err => {
+ console.error(err);
+});
+
+}
+
+
+
+
+
+// 
+
+</script>
 
     <script src="https://kit.fontawesome.com/73c4ca1b43.js" crossorigin="anonymous"></script>
 
