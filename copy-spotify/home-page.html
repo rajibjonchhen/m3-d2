@@ -22,7 +22,7 @@
 <body>
     <button class="bg-danger" id="dataChanger" onclick="dataChanger(event)">Data Changer</button>
     <button class="bg-secondary" id="dataChanger2" onclick="dataChanger2(event)">Data Changer</button>
-    <button class="bg-warning" id="albumCounter" onclick="dataChanger2(event)">Data Changer</button>
+    <button class="bg-warning" id="albumCounter" onclick="albumCounter(event)">Data Changer</button>
     
     <div class="container-fluid">
         <div class="row">
@@ -583,7 +583,7 @@ fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
 
 
 // third btn
-const dataChanger2 = function(eventData){
+const albumCounter = function(eventData){
 
 fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
  "method": "GET",
